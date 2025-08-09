@@ -1,3 +1,4 @@
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +10,10 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
+/* Background Overlay */
 .bg-overlay {
   position: fixed;
   top: 0;
@@ -22,6 +25,7 @@ body {
               radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
   z-index: -1;
   animation: floatBg 20s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes floatBg {
@@ -29,6 +33,7 @@ body {
   50% { transform: translateY(-20px) rotate(1deg); }
 }
 
+/* Header Styles */
 header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -76,6 +81,7 @@ header p {
   margin: 5px 0;
 }
 
+/* Marquee Styles */
 .marquee {
   background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
   background-size: 300% 300%;
@@ -118,7 +124,7 @@ header p {
   100% { left: 100%; transform: rotate(360deg); }
 }
 
-/* Search Box Styles */
+/* Search Container Styles */
 .search-container {
   max-width: 800px;
   margin: 20px auto;
@@ -131,6 +137,18 @@ header p {
   font-size: 1.8rem;
   margin-bottom: 15px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .search-box {
@@ -147,13 +165,25 @@ header p {
   border-radius: 50px;
   font-size: 1.1rem;
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
 }
 
 .search-box input:focus {
-  outline: none;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 1);
+}
+
+.search-box input::placeholder {
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.search-box input:focus::placeholder {
+  color: #ccc;
 }
 
 .search-box i {
@@ -163,6 +193,12 @@ header p {
   transform: translateY(-50%);
   color: #667eea;
   font-size: 1.2rem;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.search-box input:focus + i {
+  color: #764ba2;
 }
 
 .no-results {
@@ -171,16 +207,34 @@ header p {
   font-size: 1.2rem;
   margin: 20px 0;
   display: none;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
 }
 
+/* Products Heading */
 .products-heading {
   text-align: center;
   color: white;
   font-size: 2rem;
   margin: 20px 0;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.8s ease-out;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container Layout */
 .container {
   display: flex;
   max-width: 1400px;
@@ -189,6 +243,7 @@ header p {
   gap: 30px;
 }
 
+/* Sidebar Styles */
 .sidebar {
   width: 280px;
   background: rgba(255, 255, 255, 0.95);
@@ -200,6 +255,18 @@ header p {
   top: 20px;
   height: fit-content;
   border: 1px solid rgba(255,255,255,0.2);
+  animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .sidebar h3 {
@@ -208,6 +275,7 @@ header p {
   font-size: 1.3rem;
   text-align: center;
   position: relative;
+  font-weight: 600;
 }
 
 .sidebar h3::after {
@@ -236,6 +304,15 @@ header p {
   overflow: hidden;
   font-weight: 500;
   color: #555;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar li i {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
 }
 
 .sidebar li::before {
@@ -261,13 +338,25 @@ header p {
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
 
+.sidebar li:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Products Grid */
 .products {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 25px;
+  animation: fadeIn 1s ease-out 0.3s both;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Product Card Styles */
 .product {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -282,6 +371,12 @@ header p {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.product.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 .product::before {
@@ -309,9 +404,10 @@ header p {
   transition: transform 0.3s ease;
   margin-bottom: 15px;
   cursor: pointer;
+  background: #f8f9fa;
 }
 
-.product:hover img {
+.product img:hover {
   transform: scale(1.05);
 }
 
@@ -324,6 +420,7 @@ header p {
   text-align: center;
 }
 
+/* Price Styles */
 .price {
   background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
   color: white;
@@ -335,10 +432,29 @@ header p {
   font-size: 1.3rem;
   box-shadow: 0 5px 15px rgba(238, 90, 111, 0.3);
   animation: pulse 2s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.price::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: priceShine 3s ease-in-out infinite;
+}
+
+@keyframes priceShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 .price i {
   font-size: 1.1rem;
+  margin-right: 5px;
 }
 
 @keyframes pulse {
@@ -347,6 +463,7 @@ header p {
   100% { transform: scale(1); }
 }
 
+/* Description Styles */
 .description {
   font-size: 0.9rem;
   margin-bottom: 20px;
@@ -358,8 +475,25 @@ header p {
   border-left: 4px solid #667eea;
   text-align: left;
   width: 100%;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
+.description::-webkit-scrollbar {
+  width: 4px;
+}
+
+.description::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
+
+.description::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 2px;
+}
+
+/* Product Actions */
 .product-actions {
   display: flex;
   flex-direction: row;
@@ -379,11 +513,12 @@ header p {
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   width: fit-content;
   margin: 0 auto;
+  font-size: 0.9rem;
 }
 
 .product a.whatsapp-btn {
@@ -416,6 +551,11 @@ header p {
   box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
+.product a:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Footer Styles */
 footer {
   background: linear-gradient(135deg, #2c3e50, #34495e);
   color: white;
@@ -442,60 +582,13 @@ footer::before {
   100% { left: 100%; }
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 0 15px;
-  }
-  
-  .sidebar {
-    width: 100%;
-    position: static;
-  }
-  
-  .products {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  .products-heading {
-    font-size: 1.5rem;
-  }
-  
-  .search-heading {
-    font-size: 1.5rem;
-  }
-  
-  .search-box input {
-    padding: 12px 15px;
-    padding-right: 45px;
-    font-size: 1rem;
-  }
+footer p {
+  position: relative;
+  z-index: 2;
+  font-size: 1.1rem;
 }
 
-@media (max-width: 480px) {
-  .product-actions {
-    flex-direction: column;
-  }
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Floating Elements */
 .floating-elements {
   position: fixed;
   top: 0;
@@ -534,7 +627,7 @@ footer::before {
   50% { transform: translateY(-20px) rotate(180deg); }
 }
 
-/* Modal styles */
+/* Modal Styles */
 .modal {
   display: none;
   position: fixed;
@@ -545,12 +638,13 @@ footer::before {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   overflow: auto;
-  animation: fadeIn 0.3s;
+  animation: modalFadeIn 0.3s;
+  backdrop-filter: blur(5px);
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-content {
@@ -559,6 +653,7 @@ footer::before {
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 20px;
 }
 
 .modal-img {
@@ -566,12 +661,13 @@ footer::before {
   max-height: 90%;
   object-fit: contain;
   border-radius: 8px;
-  animation: zoomIn 0.3s;
+  animation: modalZoomIn 0.3s;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
 }
 
-@keyframes zoomIn {
-  from {transform: scale(0.9);}
-  to {transform: scale(1);}
+@keyframes modalZoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .close {
@@ -581,16 +677,84 @@ footer::before {
   color: #f1f1f1;
   font-size: 40px;
   font-weight: bold;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   cursor: pointer;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close:hover {
-  color: #bbb;
-  transform: rotate(90deg);
+  color: #fff;
+  background: rgba(255, 0, 0, 0.7);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    gap: 20px;
+  }
+  
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 0 15px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .sidebar li {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    justify-content: center;
+    padding: 12px 15px;
+  }
+  
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .products-heading {
+    font-size: 1.5rem;
+  }
+  
+  .search-heading {
+    font-size: 1.5rem;
+  }
+  
+  .search-box input {
+    padding: 12px 15px;
+    padding-right: 45px;
+    font-size: 1rem;
+  }
+  
   .modal-img {
     max-width: 95%;
     max-height: 80%;
@@ -600,5 +764,119 @@ footer::before {
     font-size: 30px;
     top: 15px;
     right: 20px;
+    width: 50px;
+    height: 50px;
   }
+}
+
+@media (max-width: 480px) {
+  .product-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .product a {
+    width: 100%;
+  }
+  
+  header {
+    padding: 20px 15px;
+  }
+  
+  header h1 {
+    font-size: 1.7rem;
+  }
+  
+  header p {
+    font-size: 0.95rem;
+  }
+  
+  .marquee {
+    padding: 12px;
+    font-size: 1rem;
+  }
+  
+  .products {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .product {
+    padding: 20px;
+  }
+  
+  .sidebar li {
+    min-width: 120px;
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+  
+  .sidebar li i {
+    font-size: 0.8rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .marquee,
+  .search-container,
+  .modal,
+  .floating-elements,
+  .bg-overlay,
+  header::before,
+  footer::before {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+  }
+  
+  .product {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .product {
+    border: 2px solid #333;
+  }
+  
+  .sidebar li {
+    border: 1px solid #666;
+  }
+  
+  .search-box input {
+    border: 2px solid #333;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .marquee-content {
+    animation: none;
+    padding-left: 0;
+  }
+}
+
+/* Focus Styles for Accessibility */
+.sidebar li:focus,
+.search-box input:focus,
+.product a:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+.modal:focus-within .close {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
 }
