@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hut Bazar Super Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/DwHMXQPS/NEW-LOGO.png">
+  <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/DwHMXQPS/NEW-LOGO.png">
+  <link rel="apple-touch-icon" href="https://i.postimg.cc/DwHMXQPS/NEW-LOGO.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://raw.githubusercontent.com/rumim/Hut-Bazar/main/style.css" rel="stylesheet">
+</head>
+<body>
+  <audio id="backgroundAudio" autoplay loop preload="auto" style="display: none;">
+    <source src="https://cdn.jsdelivr.net/gh/rumim/pdf-host@main/Tum%20Hi%20Ho%20Song%20Instrumental%20%EF%BD%9C%20Aashiqui%202(2).mp3" type="audio/mpeg">
+  </audio>
+  <div class="bg-overlay"></div>
+  <div class="floating-elements"></div>
+
+  <!-- The Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+      <img id="expandedImg" class="modal-img" src="">
+    </div>
+  </div>
+
+  <header>
+    <h1><i class="fas fa-store"></i> Hut Bazar Super Shop</h1>
+    <p><i class="fas fa-map-marker-alt"></i> 426/2, Court Road, Moulvibazar</p>
+    <p><i class="fas fa-phone"></i> +8801868518881, +8801871882288 | <i class="fas fa-envelope"></i> hutbazarlimited@gmail.com</p>
+  </header>
+
+  <div class="marquee">
+    <div class="marquee-content">◬ We Are Under Construction. Stay Connected With Us. ◬</div>
+  </div>
+  
+  <!-- Search Box -->
+  <div class="search-container fade-in">
+    <h2 class="search-heading">🔍 Search Products 🔍</h2>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search for products..." autocomplete="off">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="no-results">🤣No products found matching your search.</div>
+  </div>
+  
+  <h1 class="products-heading">🛒 Our Products 🛒</h1>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar fade-in">
+      <h3><i class="fas fa-list"></i> Categories</h3>
+      <ul>
+        <li onclick="filterProducts('gifts')" class="active">
+          <i class="fas fa-gift"></i> Offers & Gifts
+        </li>
+        <li onclick="filterProducts('personal')">
+          <i class="fas fa-user-check"></i> Personal Care
+        </li>
+        <li onclick="filterProducts('detergent')">
+          <i class="fas fa-tint"></i> Detergent
+        </li>
+        <li onclick="filterProducts('oral')">
+          <i class="fas fa-tooth"></i> Oral Care
+        </li>
+        <li onclick="filterProducts('snack')">
+          <i class="fas fa-cookie-bite"></i> Snacks
+        </li>
+        <li onclick="filterProducts('shampoo')">
+          <i class="fas fa-pump-soap"></i> Shampoo
+        </li>
+        <li onclick="filterProducts('frozen')">
+          <i class="fas fa-ice-cream"></i> Frozen Food
+        </li>
+        <li onclick="filterProducts('cosmetics')">
+          <i class="fas fa-hand-sparkles"></i> Cosmetics
+        </li> 
+        <li onclick="filterProducts('breakfast')">
+          <i class="fas fa-coffee"></i> Breakfast Items
+        </li>
+      </ul>
+    </div>
+
+    <!-- Products -->
+    <div class="products" id="productsContainer">
+      <!-- Products will be loaded dynamically from JavaScript -->
+    </div>
+  </div>
+
+  <footer>
+    <p><i class="fas fa-heart"></i> © 2025 Hut Bazar Super Shop | Contact: +8801715141616 <i class="fas fa-heart"></i></p>
+  </footer>
+
+  <script src="https://raw.githubusercontent.com/rumim/Hut-Bazar/main/script.js"></script>
+</body>
+</html>
