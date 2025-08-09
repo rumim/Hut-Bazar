@@ -4,94 +4,221 @@
   <meta charset="UTF-8">
   <title>Hut Bazar Super Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hut Bazar Super Shop - Your one-stop destination for quality products including personal care, cosmetics, detergents, oral care, snacks, and more.">
+  <meta name="keywords" content="super shop, grocery, personal care, cosmetics, detergent, oral care, snacks, Moulvibazar">
+  
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/DwHMXQPS/NEW-LOGO.png">
   <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/DwHMXQPS/NEW-LOGO.png">
   <link rel="apple-touch-icon" href="https://i.postimg.cc/DwHMXQPS/NEW-LOGO.png">
+  
+  <!-- External CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://raw.githubusercontent.com/rumim/Hut-Bazar/main/style.css" rel="stylesheet">
+  
+  <!-- GitHub hosted CSS with cache busting -->
+  <link href="https://cdn.jsdelivr.net/gh/rumim/Hut-Bazar@main/style.css?v=1.0" rel="stylesheet">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/rumim/Hut-Bazar@main/script.js?v=1.0" as="script">
 </head>
 <body>
-  <audio id="backgroundAudio" autoplay loop preload="auto" style="display: none;">
+  <!-- Background Audio -->
+  <audio id="backgroundAudio" preload="auto" style="display: none;">
     <source src="https://cdn.jsdelivr.net/gh/rumim/pdf-host@main/Tum%20Hi%20Ho%20Song%20Instrumental%20%EF%BD%9C%20Aashiqui%202(2).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
+  
+  <!-- Background Elements -->
   <div class="bg-overlay"></div>
   <div class="floating-elements"></div>
 
-  <!-- The Modal -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <span class="close" aria-label="Close modal">&times;</span>
     <div class="modal-content">
-      <img id="expandedImg" class="modal-img" src="">
+      <img id="expandedImg" class="modal-img" src="" alt="" role="img">
     </div>
   </div>
 
+  <!-- Header -->
   <header>
-    <h1><i class="fas fa-store"></i> Hut Bazar Super Shop</h1>
-    <p><i class="fas fa-map-marker-alt"></i> 426/2, Court Road, Moulvibazar</p>
-    <p><i class="fas fa-phone"></i> +8801868518881, +8801871882288 | <i class="fas fa-envelope"></i> hutbazarlimited@gmail.com</p>
+    <h1><i class="fas fa-store" aria-hidden="true"></i> Hut Bazar Super Shop</h1>
+    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 426/2, Court Road, Moulvibazar</p>
+    <p>
+      <i class="fas fa-phone" aria-hidden="true"></i> +8801868518881, +8801871882288 | 
+      <i class="fas fa-envelope" aria-hidden="true"></i> hutbazarlimited@gmail.com
+    </p>
   </header>
 
-  <div class="marquee">
+  <!-- Marquee -->
+  <div class="marquee" role="marquee" aria-label="Announcement">
     <div class="marquee-content">◬ We Are Under Construction. Stay Connected With Us. ◬</div>
   </div>
   
-  <!-- Search Box -->
+  <!-- Search Section -->
   <div class="search-container fade-in">
     <h2 class="search-heading">🔍 Search Products 🔍</h2>
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search for products..." autocomplete="off">
-      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search for products..." 
+        autocomplete="off"
+        aria-label="Search products"
+      >
+      <i class="fas fa-search" aria-hidden="true"></i>
     </div>
-    <div class="no-results">🤣No products found matching your search.</div>
+    <div class="no-results" role="alert" aria-live="polite">
+      🤣 No products found matching your search.
+    </div>
   </div>
   
+  <!-- Products Heading -->
   <h1 class="products-heading">🛒 Our Products 🛒</h1>
 
+  <!-- Main Container -->
   <div class="container">
     <!-- Sidebar -->
-    <div class="sidebar fade-in">
-      <h3><i class="fas fa-list"></i> Categories</h3>
-      <ul>
-        <li onclick="filterProducts('gifts')" class="active">
-          <i class="fas fa-gift"></i> Offers & Gifts
+    <aside class="sidebar fade-in" role="navigation" aria-label="Product categories">
+      <h3><i class="fas fa-list" aria-hidden="true"></i> Categories</h3>
+      <ul role="list">
+        <li 
+          onclick="filterProducts('gifts')" 
+          class="active" 
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Offers and Gifts"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('gifts')"
+        >
+          <i class="fas fa-gift" aria-hidden="true"></i> Offers & Gifts
         </li>
-        <li onclick="filterProducts('personal')">
-          <i class="fas fa-user-check"></i> Personal Care
+        <li 
+          onclick="filterProducts('personal')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Personal Care"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('personal')"
+        >
+          <i class="fas fa-user-check" aria-hidden="true"></i> Personal Care
         </li>
-        <li onclick="filterProducts('detergent')">
-          <i class="fas fa-tint"></i> Detergent
+        <li 
+          onclick="filterProducts('detergent')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Detergent"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('detergent')"
+        >
+          <i class="fas fa-tint" aria-hidden="true"></i> Detergent
         </li>
-        <li onclick="filterProducts('oral')">
-          <i class="fas fa-tooth"></i> Oral Care
+        <li 
+          onclick="filterProducts('oral')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Oral Care"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('oral')"
+        >
+          <i class="fas fa-tooth" aria-hidden="true"></i> Oral Care
         </li>
-        <li onclick="filterProducts('snack')">
-          <i class="fas fa-cookie-bite"></i> Snacks
+        <li 
+          onclick="filterProducts('snack')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Snacks"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('snack')"
+        >
+          <i class="fas fa-cookie-bite" aria-hidden="true"></i> Snacks
         </li>
-        <li onclick="filterProducts('shampoo')">
-          <i class="fas fa-pump-soap"></i> Shampoo
+        <li 
+          onclick="filterProducts('shampoo')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Shampoo"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('shampoo')"
+        >
+          <i class="fas fa-pump-soap" aria-hidden="true"></i> Shampoo
         </li>
-        <li onclick="filterProducts('frozen')">
-          <i class="fas fa-ice-cream"></i> Frozen Food
+        <li 
+          onclick="filterProducts('frozen')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Frozen Food"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('frozen')"
+        >
+          <i class="fas fa-ice-cream" aria-hidden="true"></i> Frozen Food
         </li>
-        <li onclick="filterProducts('cosmetics')">
-          <i class="fas fa-hand-sparkles"></i> Cosmetics
+        <li 
+          onclick="filterProducts('cosmetics')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Cosmetics"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('cosmetics')"
+        >
+          <i class="fas fa-hand-sparkles" aria-hidden="true"></i> Cosmetics
         </li> 
-        <li onclick="filterProducts('breakfast')">
-          <i class="fas fa-coffee"></i> Breakfast Items
+        <li 
+          onclick="filterProducts('breakfast')"
+          role="button" 
+          tabindex="0"
+          aria-label="Filter by Breakfast Items"
+          onkeydown="if(event.key==='Enter'||event.key===' ') filterProducts('breakfast')"
+        >
+          <i class="fas fa-coffee" aria-hidden="true"></i> Breakfast Items
         </li>
       </ul>
-    </div>
+    </aside>
 
-    <!-- Products -->
-    <div class="products" id="productsContainer">
+    <!-- Products Grid -->
+    <main class="products" id="productsContainer" role="main" aria-label="Product list">
       <!-- Products will be loaded dynamically from JavaScript -->
-    </div>
+      <div style="text-align: center; padding: 40px; color: white; font-size: 1.2rem;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 10px;"></i>
+        <p>Loading products...</p>
+      </div>
+    </main>
   </div>
 
+  <!-- Footer -->
   <footer>
-    <p><i class="fas fa-heart"></i> © 2025 Hut Bazar Super Shop | Contact: +8801715141616 <i class="fas fa-heart"></i></p>
+    <p>
+      <i class="fas fa-heart" aria-hidden="true"></i> 
+      © 2025 Hut Bazar Super Shop | Contact: +8801715141616 
+      <i class="fas fa-heart" aria-hidden="true"></i>
+    </p>
   </footer>
 
-  <script src="https://raw.githubusercontent.com/rumim/Hut-Bazar/main/script.js"></script>
+  <!-- GitHub hosted JavaScript with cache busting -->
+  <script src="https://cdn.jsdelivr.net/gh/rumim/Hut-Bazar@main/script.js?v=1.0"></script>
+  
+  <!-- Fallback for when external JS fails to load -->
+  <script>
+    // Check if the main script loaded successfully
+    setTimeout(function() {
+      if (typeof loadProducts === 'undefined') {
+        console.error('External JavaScript failed to load. Please check your connection.');
+        document.getElementById('productsContainer').innerHTML = 
+          '<div style="text-align: center; padding: 40px; color: white; font-size: 1.2rem;">' +
+          '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px; color: #ff6b6b;"></i>' +
+          '<p>Failed to load products. Please refresh the page or check your internet connection.</p>' +
+          '</div>';
+      }
+    }, 5000);
+    
+    // Handle CSS loading failure
+    window.addEventListener('load', function() {
+      const testElement = document.createElement('div');
+      testElement.className = 'test-css-loaded';
+      testElement.style.display = 'none';
+      document.body.appendChild(testElement);
+      
+      const computedStyle = window.getComputedStyle(testElement);
+      if (computedStyle.display === 'none') {
+        // CSS might not have loaded properly
+        console.warn('External CSS may not have loaded properly');
+      }
+      
+      document.body.removeChild(testElement);
+    });
+  </script>
 </body>
 </html>
